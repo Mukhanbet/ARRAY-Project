@@ -47,6 +47,28 @@ public class Main {
                 }
             }
         }
+
+        while(true) {
+            for(int t = 0; t < 3; t++) {
+                incomingLocationVariants[t] = scanner.nextInt();
+            }
+
+            if(initialFirstBoxeLocation.contains(incomingLocationVariants[0]) && initialSecondBoxeLocation.contains(incomingLocationVariants[1]) && initialThirdBoxeLocation.contains(incomingLocationVariants[2])) {
+                System.out.println("Congratulations, you have successfully found all the boxes.");
+                break;
+            }
+            else {
+                if(initialFirstBoxeLocation.contains(incomingLocationVariants[0])) {
+                    System.out.println("Congratulations, you have successfully found the first boxe.");
+                }
+                if(initialSecondBoxeLocation.contains(incomingLocationVariants[1])) {
+                    System.out.println("Congratulations, you have successfully found the second boxe.");
+                }
+                if(initialThirdBoxeLocation.contains(incomingLocationVariants[2])) {
+                    System.out.println("Congratulations, you have successfully found the third boxe.");
+                }
+            }
+        }
     }
 
     public static int generateNotRepeatingLocation(int minimumDistance, int maximumDistance, ArrayList<Integer>initialBoxesLocation) {
