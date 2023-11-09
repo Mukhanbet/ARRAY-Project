@@ -19,5 +19,6 @@ public class Main {
                 myIntArray[i] = random.nextInt(maximumDistance - minimumDistance + 1) - minimumDistance;
             }
         }
+        System.out.println("somw");
     }
 }
