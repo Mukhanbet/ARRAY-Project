@@ -6,22 +6,59 @@ public class Main {
     public static void main(String[] args) {
         Scanner scanner = new Scanner(System.in);
         Random random = new Random();
-        ArrayList<Integer>initialBoxesLocation = new ArrayList<Integer>();
+        ArrayList<Integer>initialFirstBoxeLocation = new ArrayList<>();
+        ArrayList<Integer>initialSecondBoxeLocation = new ArrayList<>();
+        ArrayList<Integer>initialThirdBoxeLocation = new ArrayList<>();
+        int[] incomingLocationVariants = new int[3];
 
         int minimumDistance = 1;
         int maximumDistance = 7;
 
-        for(int i = 0; i < 3; i++) {
-            int getLocation = random.nextInt(maximumDistance - minimumDistance + 1) + minimumDistance;
-            initialBoxesLocation.add(getLocation);
-        }
+        int randomLocationOfFirstBoxe = random.nextInt(maximumDistance - minimumDistance + 1) + minimumDistance;
+        initialFirstBoxeLocation.add(randomLocationOfFirstBoxe);
+        int randomLocationOfSecondBoxe = random.nextInt(maximumDistance - minimumDistance + 1) + minimumDistance;
+        initialSecondBoxeLocation.add(randomLocationOfSecondBoxe);
+        int randomLocationOfThirdBoxe = random.nextInt(maximumDistance - minimumDistance + 1) + minimumDistance;
+        initialThirdBoxeLocation.add(randomLocationOfThirdBoxe);
+        System.out.println(randomLocationOfFirstBoxe + " " + randomLocationOfSecondBoxe + " " + randomLocationOfThirdBoxe);
 
-        while(initialBoxesLocation.get(0) == initialBoxesLocation.get(1) || initialBoxesLocation.get(0) == initialBoxesLocation.get(2) || initialBoxesLocation.get(1) == initialBoxesLocation.get(2)) {
-            for(int i = 0; i < 3; i++) {
-                int getLocation = random.nextInt(maximumDistance - minimumDistance + 1) + minimumDistance;
-                initialBoxesLocation.set(i, getLocation);
+        for(int i = 1; i < 6; i++) {
+            while(true) {
+                for(int t = 0; t < 3; t++) {
+                    incomingLocationVariants[t] = scanner.nextInt();
+                }
+
+                if(initialFirstBoxeLocation.contains(incomingLocationVariants[0])) {
+                    System.out.println("The first location option was correct!");
+                    initialFirstBoxeLocation.add(generateNotRepeatingLocation(minimumDistance, maximumDistance, initialFirstBoxeLocation));
+                }
+
+                if(initialSecondBoxeLocation.contains(incomingLocationVariants[1])) {
+                    System.out.println("The second location option was correct!");
+                    initialSecondBoxeLocation.add(generateNotRepeatingLocation(minimumDistance, maximumDistance, initialSecondBoxeLocation));
+                }
+
+                if(initialThirdBoxeLocation.contains(incomingLocationVariants[2])) {
+                    System.out.println("The third location option was correct!");
+                    initialSecondBoxeLocation.add(generateNotRepeatingLocation(minimumDistance, maximumDistance, initialSecondBoxeLocation));
+                }
+                else {
+                    break;
+                }
             }
         }
+    }
 
+    public static int generateNotRepeatingLocation(int minimumDistance, int maximumDistance, ArrayList<Integer>initialBoxesLocation) {
+        Random random = new Random();
+        while(true) {
+            int getNotRepeatingLocation = random.nextInt(maximumDistance - minimumDistance + 1) + minimumDistance;
+            if(initialBoxesLocation.contains(getNotRepeatingLocation)) {
+
+            }
+            else {
+                return getNotRepeatingLocation;
+            }
+        }
     }
 }
